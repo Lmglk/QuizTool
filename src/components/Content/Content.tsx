@@ -22,6 +22,7 @@ interface IQuestion {
 
 interface IContentState {
     questions: Array<IQuestion>;
+    checked: boolean
 }
 
 export class Content extends Component<any, IContentState> {
@@ -50,7 +51,8 @@ export class Content extends Component<any, IContentState> {
         });
         this.countAcceptQuestions = 0;
         this.state = {
-            questions: questions
+            questions: questions,
+            checked: false
         };
     }
 
@@ -65,8 +67,8 @@ export class Content extends Component<any, IContentState> {
 
     private checkAnswer(): void {
         this.countAcceptQuestions = 0;
-        const newState: Array<IQuestion> = this.state.questions;
-        newState.forEach((quest, index) => {
+        const newState: IContentState = this.state;
+        newState.questions.forEach((quest, index) => {
             let accept = true;
             quest.options.forEach(option => {
                 answers[index].answer.forEach(answer => option.answer = answer === option.title);
@@ -78,15 +80,18 @@ export class Content extends Component<any, IContentState> {
                 this.countAcceptQuestions++;
         });
 
+        newState.checked = true;
         this.setState({
-            questions: newState
+            questions: newState.questions,
+            checked: newState.checked
         });
     }
 
     render(): ReactNode {
         let questionsNode: Array<React.ReactNode> =
             this.state.questions.map((quest, index) =>
-                <Quest key={quest.id} question={quest} turnAnswer={this.turnAnswer.bind(this, index)}/>
+                <Quest key={quest.id} question={quest} checked={this.state.checked}
+                       turnAnswer={this.turnAnswer.bind(this, index)}/>
             );
 
         return (

@@ -7,10 +7,15 @@ import {IOption} from "../Content/Content";
 function Quest(props: any) {
     let options: Array<ReactNode> = props.question.options
         .map((option: IOption, index: number) => {
-            let className: string = option.answer ? " valid" : "";
+            let className: string = "";
+            if (props.checked && option.answer)
+                className = " valid";
+            else if (props.checked && option.value && (option.value != option.answer))
+                className = " invalid";
             return (
                 <div className={"quest-option" + className} key={`option-${index}`}>
-                    <input type="checkbox" value={option.title} key={`input-${index}`} onChange={props.turnAnswer}/>
+                    <input type="checkbox" value={option.title} disabled={props.checked} key={`input-${index}`}
+                           onChange={props.turnAnswer}/>
                     <label key={`label-${index}`}>{option.title}</label>
                 </div>
             );
