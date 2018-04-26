@@ -1,6 +1,15 @@
+$colorInvalid: #FF6A53
+$colorValid: #6EC274
+
 .quest
   margin: 25px 0
   .quest-title
     font-weight: 700
-  .quest-options .quest-option label
-    margin-left: 10px
+  .quest-options .quest-option
+    label
+      margin-left: 10px
+      margin-bottom: 0
+    &.invalid
+      background-color: $colorInvalid
+    &.valid
+      background-color: $colorValid

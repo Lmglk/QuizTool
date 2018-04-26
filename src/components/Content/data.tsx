@@ -143,7 +143,7 @@ export const answers = [
     {
         "id": 7,
         "answer": [
-            "I was reading a book"
+            "I was reading a book."
         ]
     },
     {

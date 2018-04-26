@@ -9,12 +9,14 @@ import {data, answers} from "./data";
 
 export interface IOption {
     title: string,
-    value: boolean
+    value: boolean,
+    answer: boolean
 }
 
 interface IQuestion {
     id: number;
     title: string;
+    accept: boolean;
     options: Array<IOption>;
 }
 
@@ -23,30 +25,33 @@ interface IContentState {
 }
 
 export class Content extends Component<any, IContentState> {
-    private questions: Array<IQuestion>;
+    private countAcceptQuestions: number;
 
     constructor(props: any) {
         super(props);
 
-        this.questions = [];
+        let questions: Array<IQuestion> = [];
         data.forEach(quest => {
             let options: Array<IOption> = [];
             quest.options.forEach(option => {
                 options.push({
-                  title: option,
-                  value: false
+                    title: option,
+                    value: false,
+                    answer: false
                 });
             });
-            this.questions.push({
+            questions.push({
                 id: quest.id,
                 title: quest.title,
+                accept: false,
                 options: options
             });
 
-            this.state = {
-                questions: this.questions
-            }
         });
+        this.countAcceptQuestions = 0;
+        this.state = {
+            questions: questions
+        };
     }
 
     private turnAnswer(index: number, event: any): void {
@@ -59,21 +64,28 @@ export class Content extends Component<any, IContentState> {
     }
 
     private checkAnswer(): void {
-        this.state.questions.forEach((quest, index) => {
-            let right = true;
+        this.countAcceptQuestions = 0;
+        const newState: Array<IQuestion> = this.state.questions;
+        newState.forEach((quest, index) => {
+            let accept = true;
             quest.options.forEach(option => {
-                answers[index].answer.forEach(answer => {
-                    if ((answer === option.title && !option.value) || (answer !== option.title && option.value))
-                        right = false;
-                })
+                answers[index].answer.forEach(answer => option.answer = answer === option.title);
+                if (option.value !== option.answer)
+                    accept = false;
             });
-            console.log(quest.title, " - ", right);
+            quest.accept = accept;
+            if (quest.accept)
+                this.countAcceptQuestions++;
+        });
+
+        this.setState({
+            questions: newState
         });
     }
 
     render(): ReactNode {
         let questionsNode: Array<React.ReactNode> =
-            this.questions.map((quest, index) =>
+            this.state.questions.map((quest, index) =>
                 <Quest key={quest.id} question={quest} turnAnswer={this.turnAnswer.bind(this, index)}/>
             );
 
@@ -81,6 +93,7 @@ export class Content extends Component<any, IContentState> {
             <div className="container app-body">
                 <div className="row">
                     <button className="btn btn-default" onClick={this.checkAnswer.bind(this)}>Проверить</button>
+                    <span>Правильно отвечено: {this.countAcceptQuestions} из {this.state.questions.length}</span>
                     <div className="col-12">{questionsNode}</div>
                 </div>
             </div>
