@@ -1,0 +1,22 @@
+.header-wrapper {
+  grid-area: header;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 12.5em auto;
+  align-items: center;
+  height: 100%;
+  /*background-color: #343a40;*/
+  /*color: #FFF;*/
+}
+
+.logo-container {
+  justify-self: center;
+}
+
+.logo-container .logo {
+  text-decoration: none;
+  color: #FFF;
+  font-size: 1.1em;
+}
