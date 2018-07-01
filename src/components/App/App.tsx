@@ -1,38 +1,25 @@
 import * as React from 'react';
 import {Component} from 'react';
+import {Switch} from "react-router";
+import {Route} from "react-router-dom";
 
-import {Header} from '../Header/Header';
-import {Page} from '../Page/Page';
-import {Sidebar} from "../Sidebar/Sidebar";
-
-import './App.css';
+import {Home} from "../Home/Home";
+import {Login} from "../Login/Login";
 
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
-
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      dark: '#0e141a',
-      light: '#5e646b',
-      main: '#343a40'
-    },
-    secondary: {
-      dark: '#79b700',
-      light: '#e4ff54',
-      main: '#aeea00'
-    }
-  }
-});
+import {materialTheme} from "../../themes/theme";
+import './App.css';
 
 class App extends Component {
+  private readonly theme = createMuiTheme(materialTheme);
+
   public render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="app">
-          <Header/>
-          <Sidebar/>
-          <Page/>
-        </div>
+      <MuiThemeProvider theme={this.theme}>
+      <Switch>
+        <Route exact={true} path="/" component={Home}/>
+        <Route path="/login" component={Login}/>
+      </Switch>
       </MuiThemeProvider>
     );
   }

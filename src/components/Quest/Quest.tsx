@@ -19,7 +19,7 @@ export class Quest extends Component<IQuestProps, any> {
     let className: string = "";
     if (answer) {
       className = "valid"
-    } else if (value && !answer) {
+    } else if (value) {
       className = "invalid"
     }
     return className;

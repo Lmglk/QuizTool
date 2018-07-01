@@ -51,18 +51,20 @@ export class Content extends Component<any, IContentState> {
   }
 
   public render(): ReactNode {
-    const questionsNode = this.state.questions.map((quest, index) =>
-      <Quest key={quest.id} question={quest} index={index + 1} checked={this.state.checked}
-             turnAnswer={this.turnAnswer.bind(this, index)}/>
+    const { questions, checked } = this.state;
+
+    const questionsNode = questions.map((quest, index) =>
+      <Quest key={quest.id} question={quest} index={index + 1} checked={checked}
+             turnAnswer={this.turnAnswer(index)}/>
     );
 
     return (
       <Paper className="content">
         <div className="toolbar">
           <div className="check-info">
-            Correct answers: {this.countAcceptQuestions} of {this.state.questions.length}
+            Correct answers: {this.countAcceptQuestions} of {questions.length}
           </div>
-          <Button variant="contained" color="secondary" disabled={this.state.checked}
+          <Button variant="contained" color="secondary" disabled={checked}
                   onClick={this.handleClick}>
             Check
           </Button>
@@ -72,7 +74,7 @@ export class Content extends Component<any, IContentState> {
     )
   }
 
-  private turnAnswer(index: number, event: any): void {
+  private turnAnswer = (index: number) => (event: any) => {
     const newState: IQuestion[] = this.state.questions;
     const option: IOption | undefined = newState[index].options
       .find((value: IOption) => value.title === event.target.value);
@@ -82,7 +84,7 @@ export class Content extends Component<any, IContentState> {
     this.setState({
       questions: newState
     });
-  }
+  };
 
   private handleClick = () => {
     this.countAcceptQuestions = 0;
