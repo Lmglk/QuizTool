@@ -7,6 +7,7 @@ import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 
 import "./Login.css";
+import App from "../App/App";
 
 interface ILoginState {
   login: string;
@@ -50,9 +51,9 @@ export class Login extends Component<any, ILoginState> {
   };
 
   private submit = () => {
-    console.log(`
-      Login: ${this.state.login}
-      Password: ${this.state.password}
-    `);
+    App.authorization(this.state.login, this.state.password);
+    if (App.isAuth) {
+      this.props.history.push('/');
+    }
   }
 }
