@@ -7,13 +7,12 @@ import {Page} from "../Page/Page";
 import "./Home.css";
 
 export class Home extends Component {
-
   public render(): ReactNode {
     return (
       <div className="home-page">
         <Header/>
         <Sidebar/>
-        <Page/>
+        <Page {...this.props}/>
       </div>
     );
   }

@@ -53,7 +53,7 @@ export class Login extends Component<any, ILoginState> {
   private submit = () => {
     App.authorization(this.state.login, this.state.password);
     if (App.isAuth) {
-      this.props.history.push('/');
+      this.props.history.push('/home');
     }
   }
 }

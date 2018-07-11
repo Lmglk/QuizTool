@@ -1,18 +1,25 @@
 import * as React from 'react';
 import {Component} from 'react';
 
-import {Content} from "../Content/Content";
+import {TestList} from '../TestList/TestList';
 
 import "./Page.css";
+import {Route, Switch} from "react-router";
+import {Content} from "../Content/Content";
 
 export class Page extends Component {
   public render() {
+    console.log(this.props);
+    // const match = this.props.match;
     return (
       <div className="page">
         <div className="title">
           <h2>Test</h2>
         </div>
-        <Content/>
+        <Switch>
+          <Route exact={true} path={`/home`} component={TestList}/>
+          <Route path={`/home/test`} component={Content}/>
+        </Switch>
       </div>
     )
   }

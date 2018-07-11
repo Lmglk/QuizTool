@@ -9,7 +9,7 @@ import {Login} from "../Login/Login";
 import {createMuiTheme, MuiThemeProvider} from '@material-ui/core/styles';
 import {materialTheme} from "../../themes/theme";
 import './App.css';
-import PrivateRouter from '../PrivateRoute/PrivateRoute';
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 class App extends Component {
   public static isAuth = false;
@@ -25,7 +25,7 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={this.theme}>
       <Switch>
-        <PrivateRouter exact={true} path="/" isAuth={App.isAuth} component={Home}/>
+        <PrivateRoute path="/home" logged={App.isAuth} component={Home}/>
         <Route path="/login" component={Login}/>
       </Switch>
       </MuiThemeProvider>

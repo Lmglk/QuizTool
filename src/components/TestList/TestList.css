@@ -1,0 +1,24 @@
+.list-item {
+  display: grid;
+  grid-template-areas:
+    "title info"
+    "description info";
+  grid-gap: 1em;
+  border-bottom: 1px solid #D7D7D7;
+  padding: 2em;
+}
+
+.list-item .title {
+  grid-area: title;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.list-item .description {
+  grid-area: description;
+}
+
+.list-item .info {
+  grid-area: info;
+  align-self: center;
+}
