@@ -6,13 +6,7 @@ import {testsList} from "../../mocks/tests";
 
 import "./TestList.css";
 import Button from "@material-ui/core/Button";
-
-interface ITest {
-  id: number;
-  author_id: number;
-  title: string;
-  description: string;
-}
+import {ITest} from "../../types/test";
 
 interface ITestListState {
   testList: ITest[];

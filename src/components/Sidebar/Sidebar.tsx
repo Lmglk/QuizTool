@@ -15,7 +15,7 @@ export class Sidebar extends Component {
     return (
       <Paper className="sidebar">
         <MenuList>
-          <Link to="/home">
+          <Link to="/home" className="link">
             <MenuItem>
               <ListItemIcon>
                 <HomeIcon/>

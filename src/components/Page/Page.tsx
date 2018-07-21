@@ -9,8 +9,6 @@ import {Content} from "../Content/Content";
 
 export class Page extends Component {
   public render() {
-    console.log(this.props);
-    // const match = this.props.match;
     return (
       <div className="page">
         <div className="title">

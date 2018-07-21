@@ -1,10 +1,11 @@
 import * as React from 'react';
-import {IOption, IQuestion} from "../Content/Content";
 import FormGroup from "@material-ui/core/FormGroup";
 import Checkbox from "@material-ui/core/Checkbox";
 
 import "./Quest.css";
 import {Component, ReactNode} from "react";
+import {IOption} from "../../types/option";
+import {IQuestion} from "../../types/question";
 
 interface IQuestProps {
   index: number

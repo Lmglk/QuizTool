@@ -5,22 +5,11 @@ import Paper from "@material-ui/core/Paper";
 
 import "./Content.css";
 
-import {answers, data} from "../../mocks/data";
+import {answers, tests} from "../../mocks/data";
 import Button from "@material-ui/core/Button";
 import {Quest} from "../Quest/Quest";
-
-export interface IOption {
-  title: string,
-  value: boolean,
-  answer: boolean
-}
-
-export interface IQuestion {
-  id: number;
-  title: string;
-  accept: boolean;
-  options: IOption[];
-}
+import {IQuestion} from "../../types/question";
+import {IOption} from "../../types/option";
 
 interface IContentState {
   questions: IQuestion[];
@@ -37,7 +26,7 @@ export class Content extends Component<any, IContentState> {
     this.countAcceptQuestions = 0;
     this.state = {
       checked: false,
-      questions: data.map(quest => ({
+      questions: tests.questions.map(quest => ({
         id: quest.id,
         title: quest.title,
         accept: false,

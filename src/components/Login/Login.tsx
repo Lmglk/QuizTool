@@ -10,13 +10,13 @@ import "./Login.css";
 import App from "../App/App";
 
 interface ILoginState {
-  login: string;
+  email: string;
   password: string;
 }
 
 export class Login extends Component<any, ILoginState> {
   public state: ILoginState = {
-    login: "",
+    email: "",
     password: ""
   };
 
@@ -29,8 +29,8 @@ export class Login extends Component<any, ILoginState> {
           </div>
           <div className="content">
             <FormGroup>
-              <TextField className="form-item" label="Login" value={this.state.login}
-                         onChange={this.handleChange('login')}/>
+              <TextField className="form-item" label="Email" value={this.state.email}
+                         onChange={this.handleChange('email')}/>
               <TextField className="form-item" label="Password" type="password" value={this.state.password}
                          onChange={this.handleChange('password')}/>
               <Button className="submit-btn" type="submit" variant="contained" color="secondary"
@@ -51,7 +51,7 @@ export class Login extends Component<any, ILoginState> {
   };
 
   private submit = () => {
-    App.authorization(this.state.login, this.state.password);
+    App.authorization(this.state.email, this.state.password);
     if (App.isAuth) {
       this.props.history.push('/home');
     }

@@ -25,8 +25,8 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={this.theme}>
       <Switch>
-        <PrivateRoute path="/home" logged={App.isAuth} component={Home}/>
         <Route path="/login" component={Login}/>
+        <PrivateRoute path="/" logged={App.isAuth} component={Home}/>
       </Switch>
       </MuiThemeProvider>
     );
