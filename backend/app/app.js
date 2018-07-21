@@ -20,13 +20,14 @@ export class App {
     this.app.use(routes);
   }
 
-  connectDB() {
-    mongoose.connect(CONFIG.MONGO_URI, {useNewUrlParser: true})
-      .then(() => console.log('MongoDB connected'))
-      .catch((error) => {
-        console.log(error);
-        this.stop();
-      });
+  async connectDB() {
+    try {
+      await mongoose.connect(CONFIG.MONGO_URI, {useNewUrlParser: true});
+      console.log('MongoDB connected');
+    } catch (e) {
+      console.log(e);
+      this.stop();
+    }
   }
 
   async errorHandler(ctx, next) {

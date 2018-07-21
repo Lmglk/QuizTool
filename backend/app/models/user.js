@@ -27,6 +27,8 @@ const UserSchema = new Schema({
   timestamps: true
 });
 
+UserSchema.statics.createFields = ['email', 'password', 'firstName', 'lastName'];
+
 UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) {
     return next();

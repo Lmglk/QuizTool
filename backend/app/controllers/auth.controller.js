@@ -2,12 +2,9 @@ import { User } from '../models/';
 
 export class AuthController {
   static async signUp(ctx) {
-    const user = {
-      email: ctx.request.body.email,
-      password: ctx.request.body.password,
-      firstName: ctx.request.body.firstName,
-      lastName: ctx.request.body.lastName
-    };
+    const user = User.createFields.reduce((acc, field) => ({
+      ...acc, [field]: ctx.request.body[field],
+    }), {});
 
     ctx.body = await User.create(user);
   }
@@ -20,7 +17,7 @@ export class AuthController {
 
     const user = await User.findOne({ email });
     if (!user) {
-      throw ctx.throw(400, {message: 'User not found'});
+      throw ctx.throw(400, { message: 'User not found' });
     }
 
     if (!user.comparePasswords(password)) {
