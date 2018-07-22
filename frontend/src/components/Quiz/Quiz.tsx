@@ -3,9 +3,9 @@ import {Component, ReactNode} from "react";
 
 import Paper from "@material-ui/core/Paper";
 
-import "./Content.css";
+import "./Quiz.css";
 
-import {answers, tests} from "../../mocks/data";
+import {answers} from "../../mocks/data";
 import Button from "@material-ui/core/Button";
 import {Quest} from "../Quest/Quest";
 import {IQuestion} from "../../types/question";
@@ -16,27 +16,39 @@ interface IContentState {
   checked: boolean
 }
 
-export class Content extends Component<any, IContentState> {
-  public readonly state: IContentState;
+export class Quiz extends Component<any, IContentState> {
+  public readonly state: IContentState = {
+    checked: false,
+    questions: []
+  };
+
   private countAcceptQuestions: number;
+  private quizId: string;
 
   constructor(props: any) {
     super(props);
-
+    this.quizId = props.match.params.id;
     this.countAcceptQuestions = 0;
-    this.state = {
-      checked: false,
-      questions: tests.questions.map(quest => ({
+  }
+
+  public async componentDidMount() {
+    try {
+      const response = await fetch(`http://localhost:4200/api/quiz/getQuestionsByTestId/${this.quizId}`);
+      const data = await response.json();
+      const questions = data.questions.map((quest: any) => ({
         id: quest.id,
         title: quest.title,
         accept: false,
-        options: quest.options.map(option => ({
+        options: quest.options.map((option: string) => ({
           title: option,
           value: false,
           answer: false
         }))
-      }))
-    };
+      }));
+      this.setState({questions});
+    } catch (e) {
+      console.error('Loading of quiz - FAIL')
+    }
   }
 
   public render(): ReactNode {

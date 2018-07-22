@@ -10,6 +10,7 @@
     "list:fix": "eslint --fix app"
   },
   "dependencies": {
+    "@koa/cors": "2",
     "bcrypt": "^3.0.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",

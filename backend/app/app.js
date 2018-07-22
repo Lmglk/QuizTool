@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import logger from 'koa-logger';
+import cors from '@koa/cors';
 import mongoose from 'mongoose';
 
 import { CONFIG } from './config/config';
@@ -13,6 +14,7 @@ export class App {
     this.app = new Koa();
 
     this.connectDB();
+    this.app.use(cors());
     this.app.use(logger());
     this.app.use(this.errorHandler);
     this.app.use(bodyParser());
