@@ -10,7 +10,7 @@ export class Home extends Component {
   public render(): ReactNode {
     return (
       <div className="home-page">
-        <Header/>
+        <Header {...this.props}/>
         <Sidebar/>
         <Page {...this.props}/>
       </div>
