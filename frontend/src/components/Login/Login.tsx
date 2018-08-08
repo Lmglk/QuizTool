@@ -50,9 +50,8 @@ export class Login extends Component<any, ILoginState> {
     } as ILoginState);
   };
 
-  private submit = () => {
-    App.authorization(this.state.email, this.state.password);
-    if (App.isAuth) {
+  private submit = async () => {
+    if (await App.authorization(this.state.email, this.state.password)) {
       this.props.history.push('/home');
     }
   }

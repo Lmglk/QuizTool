@@ -1,4 +1,6 @@
-import { User } from '../models/';
+import {User} from '../models/';
+import jwt from 'jsonwebtoken';
+import {CONFIG} from "../config/config";
 
 export class AuthController {
   static async signUp(ctx) {
@@ -10,20 +12,23 @@ export class AuthController {
   }
 
   static async signIn(ctx) {
-    const { email, password } = ctx.request.body;
+    const {email, password} = ctx.request.body;
+    console.log('email', email);
+    console.log('pass:', password);
     if (!email || !password) {
-      ctx.throw(400, { message: 'Invalid data' });
+      ctx.throw(400, {message: 'Invalid data'});
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({email});
     if (!user) {
-      throw ctx.throw(400, { message: 'User not found' });
+      throw ctx.throw(400, {message: 'User not found'});
     }
 
     if (!user.comparePasswords(password)) {
-      ctx.throw(400, { message: 'Invalid data' });
+      ctx.throw(400, {message: 'Invalid data'});
     }
 
-    ctx.body = user;
+    const token = await jwt.sign({ email }, CONFIG.JWT_SECRET);
+    ctx.body = { token: token };
   }
 }

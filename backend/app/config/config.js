@@ -1,4 +1,5 @@
 export const CONFIG = {
   PORT: process.env.PORT || 4200,
-  MONGO_URI: 'mongodb://localhost:27017/quiztool'
+  MONGO_URI: 'mongodb://localhost:27017/quiztool',
+  JWT_SECRET: 'secret-key'
 };

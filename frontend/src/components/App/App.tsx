@@ -11,12 +11,29 @@ import {materialTheme} from "../../themes/theme";
 import './App.css';
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
-class App extends Component {
+class App extends Component<any, any> {
   public static isAuth = false;
-  public static authorization(login: string, password: string) {
-    if (login === 'admin' && password === 'admin') {
-      App.isAuth = true;
+
+  public static async authorization(email: string, password: string) {
+    if (email.trim() && password.trim()) {
+      const res = await fetch(`http://localhost:4200/api/auth/signin`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify({email, password})
+        }
+      );
+
+      const { token } = await res.json();
+      if (token) {
+        App.isAuth = true;
+        return true;
+      }
     }
+
+    return false;
   };
 
   private readonly theme = createMuiTheme(materialTheme);
@@ -24,10 +41,10 @@ class App extends Component {
   public render() {
     return (
       <MuiThemeProvider theme={this.theme}>
-      <Switch>
-        <Route path="/login" component={Login}/>
-        <PrivateRoute path="/" logged={App.isAuth} component={Home}/>
-      </Switch>
+        <Switch>
+          <Route path="/login" component={Login}/>
+          <PrivateRoute path="/" logged={App.isAuth} component={Home}/>
+        </Switch>
       </MuiThemeProvider>
     );
   }
