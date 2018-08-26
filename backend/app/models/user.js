@@ -29,6 +29,15 @@ const UserSchema = new Schema({
 
 UserSchema.statics.createFields = ['email', 'password', 'firstName', 'lastName'];
 
+UserSchema.statics.getInfo = function(id) {
+  return this.findById(id, {
+    _id: 0,
+    email: 1,
+    firstName: 1,
+    lastName: 1
+  });
+};
+
 UserSchema.pre('save', function(next) {
   if (!this.isModified('password')) {
     return next();

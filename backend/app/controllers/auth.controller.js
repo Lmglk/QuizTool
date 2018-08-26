@@ -13,8 +13,6 @@ export class AuthController {
 
   static async signIn(ctx) {
     const {email, password} = ctx.request.body;
-    console.log('email', email);
-    console.log('pass:', password);
     if (!email || !password) {
       ctx.throw(400, {message: 'Invalid data'});
     }
@@ -29,6 +27,9 @@ export class AuthController {
     }
 
     const token = await jwt.sign({ email }, CONFIG.JWT_SECRET);
-    ctx.body = { token: token };
+    ctx.body = {
+      id: user._id,
+      token: token
+    };
   }
 }
