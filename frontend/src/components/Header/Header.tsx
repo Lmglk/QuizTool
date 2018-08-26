@@ -9,13 +9,37 @@ import {Link} from "react-router-dom";
 import {Avatar, Menu, MenuItem} from "@material-ui/core";
 import App from "../App/App";
 
-export class Header extends Component<any, any> {
+interface IHeaderState {
+  anchorEl: any;
+  userInfo: {
+    email: string;
+    firstName: string;
+    lastName: string;
+  }
+}
+
+export class Header extends Component<any, IHeaderState> {
+  private static getInitials(firstName: string, lastName: string): string {
+    return (`${firstName[0]}${lastName[0]}`).toUpperCase();
+  }
+
+  private static getFullName(firstName: string, lastName: string): string {
+    return `${firstName} ${lastName}`
+  }
+
   public readonly state = {
-    anchorEl: undefined
+    anchorEl: undefined,
+    userInfo: {
+      email: '',
+      firstName: '',
+      lastName: '',
+    }
   };
 
   public render(): ReactNode {
-    const {anchorEl} = this.state;
+    const { anchorEl, userInfo } = this.state;
+    const initials = Header.getInitials(userInfo.firstName, userInfo.lastName);
+    const fullName = Header.getFullName(userInfo.firstName, userInfo.lastName);
     const open = Boolean(anchorEl);
     return (
       <AppBar className="header-wrapper" position="static">
@@ -26,9 +50,9 @@ export class Header extends Component<any, any> {
           <div className="user-info-container">
             <MenuItem>
               <div className="user-profile" onClick={this.userProfileDropdownOpen}>
-                <Avatar className="avatar">JD</Avatar>
-                <div className="name">Jonh Doe</div>
-                <div className="email">admin@admin.com</div>
+                <Avatar className="avatar">{initials}</Avatar>
+                <div className="name">{fullName}</div>
+                <div className="email">{userInfo.email}</div>
               </div>
               <Menu id="user-profile-menu"
                     anchorEl={anchorEl}
@@ -51,6 +75,17 @@ export class Header extends Component<any, any> {
       </AppBar>
     )
   }
+
+  public async componentDidMount() {
+    try {
+      const response = await fetch(`http://localhost:4200/api/user/getInfo/${App.userId}`);
+      const data = await response.json();
+      this.setState({userInfo: data});
+    } catch (e) {
+      console.error('Loading info about user - FAIL');
+    }
+  }
+
 
   private userProfileDropdownOpen = (event: any) => {
     this.setState({anchorEl: event.currentTarget});

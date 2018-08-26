@@ -12,6 +12,7 @@ import './App.css';
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 class App extends Component<any, any> {
+  public static userId: string;
   public static isAuth = false;
 
   public static async authorization(email: string, password: string) {
@@ -26,9 +27,10 @@ class App extends Component<any, any> {
         }
       );
 
-      const { token } = await res.json();
+      const { id, token } = await res.json();
       if (token) {
         App.isAuth = true;
+        App.userId = id;
         return true;
       }
     }
