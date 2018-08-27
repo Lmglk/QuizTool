@@ -1,0 +1,42 @@
+.registration-page {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  height: 100vh;
+  background-color: #343a40;
+}
+
+.registration-block {
+  padding: 2em;
+  width: 30em;
+}
+
+.title h1 {
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+.link-back {
+  display: block;
+  margin-bottom: 1em;
+}
+
+.arrow-back-icon {
+  margin-right: 0.5em;
+  vertical-align: text-top;
+}
+
+.password-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
+}
+
+.form-item {
+  margin-bottom: 1em !important;
+}
+
+.submit-btn {
+  margin-top: 1em !important;
+}

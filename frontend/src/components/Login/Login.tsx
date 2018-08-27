@@ -8,6 +8,7 @@ import TextField from "@material-ui/core/TextField";
 
 import "./Login.css";
 import App from "../App/App";
+import {Link} from "react-router-dom";
 
 interface ILoginState {
   email: string;
@@ -33,6 +34,7 @@ export class Login extends Component<any, ILoginState> {
                          onChange={this.handleChange('email')}/>
               <TextField className="form-item" label="Password" type="password" value={this.state.password}
                          onChange={this.handleChange('password')}/>
+              <Link to="/registration" className="link">Sign up</Link>
               <Button className="submit-btn" type="submit" variant="contained" color="secondary"
                       onClick={this.submit}>
                 Login
