@@ -1,0 +1,35 @@
+.input-items {
+  display: grid;
+  grid-gap: 2em;
+  margin: 1em 0;
+}
+
+.input-items .item > * {
+  font-size: 1em;
+}
+
+.title-item {
+  line-height: 2;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 1em;
+  justify-content: end;
+}
+
+.action-btn {
+  text-transform: none !important;
+}
+
+textarea, input {
+  width: 100%;
+  resize: none;
+  padding: 8px;
+  border: 1px solid #737373;
+  border-radius: 4px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}

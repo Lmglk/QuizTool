@@ -33,7 +33,7 @@ export class QuizList extends Component<any, IQuizListState> {
           <div className="title">{quiz.title}</div>
           <div className="description">{quiz.description}</div>
           <div className="info">
-            <Link to={`/home/quiz/${quiz._id}`}>
+            <Link to={`/quiz/${quiz._id}`}>
               <Button variant="contained" color="secondary">Pass</Button>
             </Link>
           </div>

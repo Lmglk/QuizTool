@@ -4,7 +4,7 @@
 
 .header {
   display: grid;
-  grid-template-columns: 12.5em auto;
+  grid-template-columns: 12.5em auto auto;
   align-items: center;
   height: 100%;
 }
@@ -17,6 +17,11 @@
   text-decoration: none;
   color: #FFF;
   font-size: 1.1em;
+}
+
+.quiz-create-btn {
+  text-transform: none !important;
+  margin: 0 2em !important;
 }
 
 .user-info-container {

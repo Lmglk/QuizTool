@@ -8,6 +8,7 @@ import './Header.css';
 import {Link} from "react-router-dom";
 import {Avatar, Menu, MenuItem} from "@material-ui/core";
 import App from "../App/App";
+import Button from "@material-ui/core/Button/Button";
 
 interface IHeaderState {
   anchorEl: any;
@@ -46,6 +47,12 @@ export class Header extends Component<any, IHeaderState> {
         <div className="header">
           <div className="logo-container">
             <Link to="/home" className="logo">QuizTool</Link>
+          </div>
+          <div>
+            <Button className="quiz-create-btn" variant="contained" color="secondary"
+                    onClick={this.quizCreate}>
+              Create quiz
+            </Button>
           </div>
           <div className="user-info-container">
             <MenuItem>
@@ -86,6 +93,9 @@ export class Header extends Component<any, IHeaderState> {
     }
   }
 
+  private quizCreate = () => {
+    this.props.history.push('/quiz-create');
+  };
 
   private userProfileDropdownOpen = (event: any) => {
     this.setState({anchorEl: event.currentTarget});
