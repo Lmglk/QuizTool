@@ -1,6 +1,5 @@
 .input-items {
   display: grid;
-  grid-gap: 2em;
   margin: 1em 0;
 }
 
@@ -13,8 +12,9 @@
 }
 
 .actions {
+  margin-top: 2em;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-auto-flow: column;
   grid-gap: 1em;
   justify-content: end;
 }
@@ -32,4 +32,36 @@ textarea, input {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
+
+.panel-head {
+  border-bottom: 1px solid #DDD !important;
+}
+
+.panel-head-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: auto 1fr;
+  grid-gap: 1em;
+  align-items: center;
+}
+
+.panel-body {
+  padding: 24px !important;
+}
+
+.options-container {
+  width: 100%;
+}
+
+.options {
+  width: 100%;
+}
+
+.options thead {
+  text-align: center;
+}
+
+.options .title {
+  width: 100%;
 }
