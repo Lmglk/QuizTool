@@ -41,7 +41,7 @@ textarea, input {
 .panel-head-container {
   display: grid;
   width: 100%;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   grid-gap: 1em;
   align-items: center;
 }
