@@ -11,4 +11,4 @@ export const materialTheme = {
       main: '#aeea00'
     }
   }
-}
+};
