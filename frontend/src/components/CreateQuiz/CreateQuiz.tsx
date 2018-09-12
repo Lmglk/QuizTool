@@ -7,19 +7,12 @@ import Stepper from "@material-ui/core/Stepper/Stepper";
 import Step from "@material-ui/core/Step/Step";
 import StepButton from "@material-ui/core/StepButton/StepButton";
 import Button from "@material-ui/core/Button/Button";
-import ExpansionPanel from "@material-ui/core/ExpansionPanel/ExpansionPanel";
-import ExpansionPanelSummary from "@material-ui/core/ExpansionPanelSummary/ExpansionPanelSummary";
-import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails/ExpansionPanelDetails";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {IQuiz} from "../../types/quiz";
 import App from "../App/App";
 import {IQuestion} from "../../types/question";
 import {IOption} from "../../types/option";
-import Checkbox from "@material-ui/core/Checkbox/Checkbox";
-import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
-import IconButton from "@material-ui/core/IconButton/IconButton";
-import Divider from "@material-ui/core/Divider/Divider";
+import QuizInfoDefinition from "./QuizInfoDefinition/QuizInfoDefinition";
+import QuestListDefinition from "./QuestListDefinition/QuestListDefinition";
 
 interface ICreateQuizState {
   activeStep: number;
@@ -75,15 +68,7 @@ export class CreateQuiz extends Component<any, ICreateQuizState> {
       case 0:
         return (
           <div className="input-items">
-            <div className="item">
-              <div className="title-item">Quiz name:</div>
-              <input value={commonInfo.title} onChange={this.changeHandler('title')}/>
-            </div>
-            <div className="item">
-              <div className="title-item">Quiz description</div>
-              <textarea rows={5} value={commonInfo.description}
-                        onChange={this.changeHandler('description')}/>
-            </div>
+            <QuizInfoDefinition title={commonInfo.title} changeHandler={this.changeHandler}/>
             <div className="actions">
               <Button className="action-btn" variant="contained" color="secondary"
                       onClick={this.changeStep(step, 'next')}>
@@ -96,7 +81,13 @@ export class CreateQuiz extends Component<any, ICreateQuizState> {
         return (
           <div className="input-items">
 
-            {this.generateHTMLQuestions(questions)}
+            <QuestListDefinition questions={questions}
+                                 changeQuestionName={this.changeQuestionName}
+                                 addOption={this.addOption}
+                                 deleteQuestion={this.deleteQuestion}
+                                 changeOptionName={this.changeOptionName}
+                                 markAsAnswer={this.markAsAnswer}
+                                 deleteOption={this.deleteOption}/>
 
             <div className="actions">
               <Button className="action-btn" variant="contained" color="secondary"
@@ -134,74 +125,6 @@ export class CreateQuiz extends Component<any, ICreateQuizState> {
     }
   };
 
-  private generateHTMLQuestions(questions: IQuestion[]) {
-    return questions.map((question, index) => (
-      <ExpansionPanel key={index}>
-        <ExpansionPanelSummary className="panel-head" expandIcon={<ExpandMoreIcon />}>
-          <div className="panel-head-container">
-            <div>{index + 1}.</div>
-            <div>
-              <input type="text" value={question.title} onChange={this.changeQuestionName(question)}/>
-            </div>
-          </div>
-        </ExpansionPanelSummary>
-        <Divider />
-        <ExpansionPanelDetails className="panel-body">
-          <div className="options-container">
-            <table className="options">
-              <thead>
-              <tr>
-                <td>№</td>
-                <td className="title">Option</td>
-                <td>Answer</td>
-                <td/>
-              </tr>
-              </thead>
-              <tbody>{this.generateHTMLOptions(question)}</tbody>
-            </table>
-
-            <div className="panel-actions">
-              <Button variant="contained" color="secondary" aria-label="Add option"
-                      onClick={this.addOption(question)}>
-                <AddIcon/>
-                Add option
-              </Button>
-
-              <Button variant="contained" color="secondary" aria-label="Delete question"
-                      onClick={this.deleteQuestion(question)}>
-                <DeleteIcon/>
-                Delete question
-              </Button>
-            </div>
-          </div>
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
-    ));
-  }
-
-  private generateHTMLOptions(question: IQuestion) {
-    const { options } = question;
-    return (
-      options.map((option, index) => (
-        <tr key={index}>
-          <td>{index + 1}.</td>
-          <td className="title">
-            <input type="text" value={option.title} onChange={this.changeOptionName(option, question)}/>
-          </td>
-          <td>
-            <Checkbox color="primary" value={option.title} checked={option.answer}
-                      onChange={this.markAsAnswer(option, question)}/>
-          </td>
-          <td>
-            <IconButton aria-label="Delete option" onClick={this.deleteOption(option, question)}>
-              <DeleteIcon />
-            </IconButton>
-          </td>
-        </tr>
-      ))
-    );
-  }
-
   private changeHandler = (name: string) => (event: any) => {
     this.setState({
       commonInfo: {
@@ -223,7 +146,7 @@ export class CreateQuiz extends Component<any, ICreateQuizState> {
             title: 'Option',
             value: false,
             answer: false
-          }]
+          }] as IOption[]
         }
       ]
     });
@@ -259,24 +182,24 @@ export class CreateQuiz extends Component<any, ICreateQuizState> {
     this.setState({questions});
   };
 
-  private deleteOption = (option: IOption, question: IQuestion) => () => {
+  private deleteOption = (option: IOption, questionId: number) => () => {
     const { questions } = this.state;
-    const currQuestion: any = questions.find(item => item === question);
+    const currQuestion: any = questions.find(item => item.id === questionId);
     currQuestion.options = currQuestion.options.filter((item: IOption) => item.id !== option.id);
     this.setState({questions});
   };
 
-  private changeOptionName = (option: IOption, question: IQuestion) => (event: any) => {
+  private changeOptionName = (option: IOption, QuestionId: number) => (event: any) => {
     const { questions } = this.state;
-    const currQuestion: any = questions.find(item => item === question);
+    const currQuestion: any = questions.find(item => item.id === QuestionId);
     const currOption = currQuestion.options.find((item: IOption) => item === option);
     currOption.title = event.target.value;
     this.setState({questions});
   };
 
-  private markAsAnswer = (option: IOption, question: IQuestion) => (event: any) => {
+  private markAsAnswer = (option: IOption, questionId: number) => (event: any) => {
     const { questions } = this.state;
-    const currQuestion: any = questions.find(item => item === question);
+    const currQuestion: any = questions.find(item => item.id === questionId);
     const currOption = currQuestion.options.find((item: IOption) => item === option);
     currOption.answer = event.target.checked;
     this.setState({questions});
@@ -310,6 +233,7 @@ export class CreateQuiz extends Component<any, ICreateQuizState> {
     });
 
     const quiz = {...this.state.commonInfo, questions};
+    console.log(quiz);
 
     const res = await fetch('http://localhost:4200/api/quiz/addTest', {
       method: 'POST',
