@@ -5,11 +5,11 @@ import Paper from "@material-ui/core/Paper";
 
 import "./Quiz.css";
 
-import {answers} from "../../mocks/data";
 import Button from "@material-ui/core/Button";
 import {Quest} from "../Quest/Quest";
 import {IQuestion} from "../../types/question";
 import {IOption} from "../../types/option";
+import {IAnswer} from "../../types/answer";
 
 interface IContentState {
   questions: IQuestion[];
@@ -87,13 +87,19 @@ export class Quiz extends Component<any, IContentState> {
     });
   };
 
-  private handleClick = () => {
+  private handleClick = async () => {
     this.countAcceptQuestions = 0;
     const newState: IContentState = this.state;
-    newState.questions.forEach((quest, index) => {
+
+    const response = await fetch(`http://localhost:4200/api/quiz/getAnswersByTestId/${this.quizId}`);
+    const answers: IAnswer[] = (await response.json()).questions;
+
+
+    newState.questions.forEach((quest) => {
       let accept = true;
       quest.options.forEach(option => {
-        answers[index].answer.forEach(answer => option.answer = answer === option.title);
+        const currAnswer = answers.find((answer: IAnswer) => answer.id === quest.id);
+        currAnswer!.answers.forEach((answer: any) => option.answer = answer === option.title);
         if (option.value !== option.answer) {
           accept = false;
         }
