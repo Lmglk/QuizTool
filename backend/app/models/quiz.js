@@ -47,7 +47,7 @@ const QuizSchema = new Schema({
 QuizSchema.statics.createFields = ['title', 'author_id', 'description', 'questions'];
 
 QuizSchema.statics.getInfoForAllQuiz = function() {
-  return this.find(null, {questions: 0, createdAt: 0, updatedAt: 0, __v: 0});
+  return this.find(null, {questions: 0, createdAt: 0, __v: 0});
 };
 
 QuizSchema.statics.getQuestions = function(id) {

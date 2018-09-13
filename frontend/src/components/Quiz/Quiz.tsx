@@ -79,9 +79,7 @@ export class Quiz extends Component<any, IContentState> {
     const newState: IQuestion[] = this.state.questions;
     const option: IOption | undefined = newState[index].options
       .find((value: IOption) => value.title === event.target.value);
-    if (option) {
-      option.value = event.target.checked;
-    }
+    option!.value = event.target.checked;
     this.setState({
       questions: newState
     });
@@ -93,7 +91,6 @@ export class Quiz extends Component<any, IContentState> {
 
     const response = await fetch(`http://localhost:4200/api/quiz/getAnswersByTestId/${this.quizId}`);
     const answers: IAnswer[] = (await response.json()).questions;
-
 
     newState.questions.forEach((quest) => {
       let accept = true;

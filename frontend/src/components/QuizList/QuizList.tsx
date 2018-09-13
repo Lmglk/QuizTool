@@ -12,6 +12,12 @@ interface IQuizListState {
 }
 
 export class QuizList extends Component<any, IQuizListState> {
+  private static parseDataOption = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric'
+  };
+
   public readonly state: IQuizListState = {
     quizList: []
   };
@@ -36,6 +42,12 @@ export class QuizList extends Component<any, IQuizListState> {
             <Link to={`/quiz/${quiz._id}`}>
               <Button variant="contained" color="secondary">Pass</Button>
             </Link>
+          </div>
+          <div className="meta-info">
+            <div className="author">Created by: {quiz.author_id}</div>
+            <div className="date">
+              Created at: {new Date(quiz.updatedAt!).toLocaleString("en", QuizList.parseDataOption)}
+            </div>
           </div>
         </div>
       );

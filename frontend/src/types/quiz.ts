@@ -3,4 +3,5 @@ export interface IQuiz {
   author_id: string;
   title: string;
   description: string;
+  updatedAt?: Date;
 }

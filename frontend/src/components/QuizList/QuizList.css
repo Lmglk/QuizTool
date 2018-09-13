@@ -3,7 +3,8 @@
   grid-template-columns: 1fr auto;
   grid-template-areas:
     "title info"
-    "description info";
+    "description info"
+    "meta-info meta-info";
   grid-gap: 1em;
   border-bottom: 1px solid #D7D7D7;
   padding: 2em;
@@ -22,4 +23,20 @@
 .list-item .info {
   grid-area: info;
   align-self: center;
+}
+
+.list-item .meta-info {
+  grid-area: meta-info;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: .8em;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.list-item .meta-info .author {
+
+}
+
+.list-item .meta-info .date {
+  justify-self: end;
 }
