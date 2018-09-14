@@ -13,6 +13,7 @@ import {IQuestion} from "../../types/question";
 import {IOption} from "../../types/option";
 import QuizInfoDefinition from "./QuizInfoDefinition/QuizInfoDefinition";
 import QuestListDefinition from "./QuestListDefinition/QuestListDefinition";
+import {config} from "../../config/app.config";
 
 interface ICreateQuizState {
   activeStep: number;
@@ -235,7 +236,7 @@ export class CreateQuiz extends Component<any, ICreateQuizState> {
     const quiz = {...this.state.commonInfo, questions};
     console.log(quiz);
 
-    const res = await fetch('http://localhost:4200/api/quiz/addTest', {
+    const res = await fetch(`${config.SERVER_API}/quiz/addTest`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

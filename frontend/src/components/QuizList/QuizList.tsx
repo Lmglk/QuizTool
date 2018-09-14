@@ -6,6 +6,7 @@ import {Card, CardActions, CardContent, CardHeader} from "@material-ui/core";
 import App from "../App/App";
 
 import "./QuizList.css";
+import {config} from "../../config/app.config";
 
 interface IQuizListState {
   quizList: IQuiz[];
@@ -20,7 +21,7 @@ export class QuizList extends Component<any, IQuizListState> {
 
   private static async getQuizList() {
     try {
-      const response = await fetch('http://localhost:4200/api/quiz/getAll');
+      const response = await fetch(`${config.SERVER_API}/quiz/getAll`);
       return await response.json();
     } catch (e) {
       console.error('Loading list of quiz - FAIL');
@@ -74,7 +75,7 @@ export class QuizList extends Component<any, IQuizListState> {
   };
 
   private removeQuiz = (quizId: string) => async () => {
-    const res = await fetch(`http://localhost:4200/api/quiz/removeQuiz/${quizId}`);
+    const res = await fetch(`${config.SERVER_API}/quiz/removeQuiz/${quizId}`);
     if (res.status !== 200) {
       console.error('Removing quiz - FAIL');
     }

@@ -9,6 +9,7 @@ import Button from "@material-ui/core/Button/Button";
 import {Link} from "react-router-dom";
 
 import ArrowBack from '@material-ui/icons/ArrowBack';
+import {config} from "../../config/app.config";
 
 interface IRegistrationState {
   email: string;
@@ -81,7 +82,7 @@ export class Registration extends Component<any, IRegistrationState> {
 
   private submit = async () => {
     if (this.state.password === this.state.confirmPassword) {
-      const res = await fetch('http://localhost:4200/api/auth/signup', {
+      const res = await fetch(`${config.SERVER_API}/auth/signup`, {
         method: 'POST',
         headers: {
           'Accept': 'Application/json',

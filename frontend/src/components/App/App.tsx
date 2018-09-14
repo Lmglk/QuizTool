@@ -11,6 +11,7 @@ import {materialTheme} from "../../themes/theme";
 import './App.css';
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import {Registration} from "../Registration/Registration";
+import {config} from "../../config/app.config";
 
 class App extends Component<any, any> {
   public static userId: string;
@@ -18,7 +19,7 @@ class App extends Component<any, any> {
 
   public static async authorization(email: string, password: string) {
     if (email.trim() && password.trim()) {
-      const res = await fetch(`http://localhost:4200/api/auth/signin`, {
+      const res = await fetch(`${config.SERVER_API}/auth/signin`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

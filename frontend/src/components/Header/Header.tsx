@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 import {Avatar, Menu, MenuItem} from "@material-ui/core";
 import App from "../App/App";
 import Button from "@material-ui/core/Button/Button";
+import {config} from "../../config/app.config";
 
 interface IHeaderState {
   anchorEl: any;
@@ -85,7 +86,7 @@ export class Header extends Component<any, IHeaderState> {
 
   public async componentDidMount() {
     try {
-      const response = await fetch(`http://localhost:4200/api/user/getInfo/${App.userId}`);
+      const response = await fetch(`${config.SERVER_API}/user/getInfo/${App.userId}`);
       const data = await response.json();
       this.setState({userInfo: data});
     } catch (e) {

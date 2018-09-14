@@ -10,6 +10,7 @@ import {Quest} from "../Quest/Quest";
 import {IQuestion} from "../../types/question";
 import {IOption} from "../../types/option";
 import {IAnswer} from "../../types/answer";
+import {config} from "../../config/app.config";
 
 interface IContentState {
   questions: IQuestion[];
@@ -33,7 +34,7 @@ export class Quiz extends Component<any, IContentState> {
 
   public async componentDidMount() {
     try {
-      const response = await fetch(`http://localhost:4200/api/quiz/getQuestionsByTestId/${this.quizId}`);
+      const response = await fetch(`${config.SERVER_API}/quiz/getQuestionsByTestId/${this.quizId}`);
       const data = await response.json();
       const questions = data.questions.map((quest: any) => ({
         id: quest.id,
@@ -89,7 +90,7 @@ export class Quiz extends Component<any, IContentState> {
     this.countAcceptQuestions = 0;
     const newState: IContentState = this.state;
 
-    const response = await fetch(`http://localhost:4200/api/quiz/getAnswersByTestId/${this.quizId}`);
+    const response = await fetch(`${config.SERVER_API}/quiz/getAnswersByTestId/${this.quizId}`);
     const answers: IAnswer[] = (await response.json()).questions;
 
     newState.questions.forEach((quest) => {
