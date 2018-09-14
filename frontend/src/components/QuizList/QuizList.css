@@ -1,42 +1,22 @@
 .list-item {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas:
-    "title info"
-    "description info"
-    "meta-info meta-info";
-  grid-gap: 1em;
-  border-bottom: 1px solid #D7D7D7;
-  padding: 2em;
+  margin-bottom: 1em;
 }
 
-.list-item .title {
-  grid-area: title;
-  font-size: 1.2em;
-  font-weight: 500;
+.list-item__actions {
+  display: grid !important;
+  grid-template-columns: auto max-content;
+  padding: 8px 24px !important;
 }
 
-.list-item .description {
-  grid-area: description;
+.remove-btn {
+  color: #FF6A53 !important;
 }
 
-.list-item .info {
-  grid-area: info;
-  align-self: center;
-}
-
-.list-item .meta-info {
-  grid-area: meta-info;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.date {
   font-size: .8em;
   color: rgba(0, 0, 0, 0.54);
 }
 
-.list-item .meta-info .author {
+.button-container {
 
-}
-
-.list-item .meta-info .date {
-  justify-self: end;
 }

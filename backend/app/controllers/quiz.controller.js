@@ -20,5 +20,9 @@ export class QuizController {
   static async getAnswers(ctx) {
     ctx.body = await Quiz.getAnswers(ctx.params.id);
   };
+
+  static async removeQuiz(ctx) {
+    ctx.body = await Quiz.findById(ctx.params.id).remove();
+  }
 }
 
