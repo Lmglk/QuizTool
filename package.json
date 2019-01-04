@@ -5,8 +5,7 @@
     "scripts": {
         "start": "npm run start:backend | npm run start:frontend",
         "start:backend": "cd backend && npm start",
-        "start:frontend": "cd frontend && npm start",
-        "precommit": "pretty-quick --staged"
+        "start:frontend": "cd frontend && npm start"
     },
     "repository": {
         "type": "git",
@@ -22,5 +21,10 @@
         "prettier": "^1.15.3",
         "husky": "^1.3.1",
         "pretty-quick": "^1.8.0"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "pretty-quick --staged"
+        }
     }
 }
