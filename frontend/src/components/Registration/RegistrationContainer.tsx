@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Component } from 'react';
+import { Component, ReactNode } from 'react';
 import { config } from '../../config/app.config';
 import { Registration } from './Registration';
 
@@ -20,7 +20,7 @@ export class RegistrationContainer extends Component<any, IRegistrationState> {
         lastName: '',
     };
 
-    public render() {
+    public render(): ReactNode {
         return (
             <Registration
                 email={this.state.email}

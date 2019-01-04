@@ -4,7 +4,6 @@ import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 
 import { Home } from '../Home/Home';
-import { Login } from '../Login/Login';
 
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { materialTheme } from '../../themes/theme';
@@ -12,6 +11,7 @@ import './App.css';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 import { config } from '../../config/app.config';
 import { RegistrationContainer } from '../Registration/RegistrationContainer';
+import { LoginContainer } from '../Login/LoginContainer';
 
 class App extends Component<any, any> {
     public static userId: string;
@@ -45,7 +45,7 @@ class App extends Component<any, any> {
         return (
             <MuiThemeProvider theme={this.theme}>
                 <Switch>
-                    <Route path="/login" component={Login} />
+                    <Route path="/login" component={LoginContainer} />
                     <Route path="/registration" component={RegistrationContainer} />
                     <PrivateRoute path="/" logged={App.isAuth} component={Home} />
                 </Switch>
