@@ -1,9 +1,9 @@
 .home-page {
-  display: grid;
-  height: 100vh;
-  grid-template-areas:
-    "header header"
-    "sidebar page";
-  grid-template-columns: 12.5em auto;
-  grid-template-rows: 3.2em auto;
+    display: grid;
+    height: 100vh;
+    grid-template-areas:
+        'header header'
+        'sidebar page';
+    grid-template-columns: 12.5em auto;
+    grid-template-rows: 3.2em auto;
 }

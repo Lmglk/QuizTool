@@ -1,22 +1,22 @@
 {
-  "parser": "babel-eslint",
-  "env": {
-    "node": true,
-    "es6": true
-  },
-  "parserOptions": {
-    "sourceType": "module"
-  },
-  "globals": {
-    "AppError": true
-  },
-  "extends": ["eslint:recommended", "google"],
-  "rules": {
-    "no-console": 0,
-    "object-curly-spacing": 0,
-    "max-len": 0,
-    "require-jsdoc": 0,
-    "comma-dangle": 0,
-    "no-invalid-this": 0
-  }
+    "parser": "babel-eslint",
+    "env": {
+        "node": true,
+        "es6": true
+    },
+    "parserOptions": {
+        "sourceType": "module"
+    },
+    "globals": {
+        "AppError": true
+    },
+    "extends": ["eslint:recommended", "google"],
+    "rules": {
+        "no-console": 0,
+        "object-curly-spacing": 0,
+        "max-len": 0,
+        "require-jsdoc": 0,
+        "comma-dangle": 0,
+        "no-invalid-this": 0
+    }
 }

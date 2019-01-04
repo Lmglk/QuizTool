@@ -1,22 +1,21 @@
 .list-item {
-  margin-bottom: 1em;
+    margin-bottom: 1em;
 }
 
 .list-item__actions {
-  display: grid !important;
-  grid-template-columns: auto max-content;
-  padding: 8px 24px !important;
+    display: grid !important;
+    grid-template-columns: auto max-content;
+    padding: 8px 24px !important;
 }
 
 .remove-btn {
-  color: #FF6A53 !important;
+    color: #ff6a53 !important;
 }
 
 .date {
-  font-size: .8em;
-  color: rgba(0, 0, 0, 0.54);
+    font-size: 0.8em;
+    color: rgba(0, 0, 0, 0.54);
 }
 
 .button-container {
-
 }

@@ -1,43 +1,43 @@
 .panel-head {
-  border-bottom: 1px solid #DDD !important;
+    border-bottom: 1px solid #ddd !important;
 }
 
 .panel-head-container {
-  display: grid;
-  width: 100%;
-  grid-template-columns: auto 1fr auto;
-  grid-gap: 1em;
-  align-items: center;
+    display: grid;
+    width: 100%;
+    grid-template-columns: auto 1fr auto;
+    grid-gap: 1em;
+    align-items: center;
 }
 
 .panel-body {
-  padding: 24px !important;
+    padding: 24px !important;
 }
 
 .panel-body .panel-actions {
-  display: grid;
-  grid-gap: 2em;
-  grid-auto-flow: column;
-  justify-content: end;
-  margin-top: 1em;
+    display: grid;
+    grid-gap: 2em;
+    grid-auto-flow: column;
+    justify-content: end;
+    margin-top: 1em;
 }
 
 .panel-body .panel-actions button {
-  text-transform: none;
+    text-transform: none;
 }
 
 .options-container {
-  width: 100%;
+    width: 100%;
 }
 
 .options {
-  width: 100%;
+    width: 100%;
 }
 
 .options thead {
-  text-align: center;
+    text-align: center;
 }
 
 .options .title {
-  width: 100%;
+    width: 100%;
 }

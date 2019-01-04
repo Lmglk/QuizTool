@@ -1,31 +1,32 @@
 .input-items {
-  display: grid;
-  margin: 1em 0;
-  grid-gap: 2em;
+    display: grid;
+    margin: 1em 0;
+    grid-gap: 2em;
 }
 
 .input-items .item > * {
-  font-size: 1em;
+    font-size: 1em;
 }
 
 .actions {
-  display: grid;
-  grid-auto-flow: column;
-  grid-gap: 1em;
-  justify-content: end;
+    display: grid;
+    grid-auto-flow: column;
+    grid-gap: 1em;
+    justify-content: end;
 }
 
 .action-btn {
-  text-transform: none !important;
+    text-transform: none !important;
 }
 
-textarea, input {
-  width: 100%;
-  resize: none;
-  padding: 8px;
-  border: 1px solid #737373;
-  border-radius: 4px;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+textarea,
+input {
+    width: 100%;
+    resize: none;
+    padding: 8px;
+    border: 1px solid #737373;
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }

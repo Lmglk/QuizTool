@@ -1,9 +1,9 @@
 .content {
-  padding: 2em;
+    padding: 2em;
 }
 
 .toolbar {
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  align-items: center;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    align-items: center;
 }

@@ -1,35 +1,35 @@
 {
-  "name": "quiztool-backend",
-  "version": "1.0.0",
-  "main": "app/server.js",
-  "author": "Leonid Veretennikov",
-  "scripts": {
-    "start": "babel-node app",
-    "dev": "nodemon --exec yarn lint && yarn start",
-    "lint": "eslint app",
-    "list:fix": "eslint --fix app"
-  },
-  "dependencies": {
-    "@koa/cors": "2",
-    "bcrypt": "^3.0.0",
-    "jsonwebtoken": "^8.3.0",
-    "koa": "^2.5.2",
-    "koa-bodyparser": "^4.2.1",
-    "koa-logger": "^3.2.0",
-    "koa-router": "^7.4.0",
-    "mongoose": "^5.2.3",
-    "mongoose-unique-validator": "^2.0.1"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-eslint": "^8.2.6",
-    "babel-plugin-transform-async-to-generator": "^6.24.1",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-stage-0": "^6.24.1",
-    "eslint": "^5.1.0",
-    "eslint-config-google": "^0.9.1",
-    "nodemon": "^1.18.2"
-  },
-  "license": "MIT"
+    "name": "quiztool-backend",
+    "version": "1.0.0",
+    "main": "app/server.js",
+    "author": "Leonid Veretennikov",
+    "scripts": {
+        "start": "babel-node app",
+        "dev": "nodemon --exec yarn lint && yarn start",
+        "lint": "eslint app",
+        "list:fix": "eslint --fix app"
+    },
+    "dependencies": {
+        "@koa/cors": "2",
+        "bcrypt": "^3.0.0",
+        "jsonwebtoken": "^8.3.0",
+        "koa": "^2.5.2",
+        "koa-bodyparser": "^4.2.1",
+        "koa-logger": "^3.2.0",
+        "koa-router": "^7.4.0",
+        "mongoose": "^5.2.3",
+        "mongoose-unique-validator": "^2.0.1"
+    },
+    "devDependencies": {
+        "babel-cli": "^6.26.0",
+        "babel-core": "^6.26.3",
+        "babel-eslint": "^8.2.6",
+        "babel-plugin-transform-async-to-generator": "^6.24.1",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-stage-0": "^6.24.1",
+        "eslint": "^5.1.0",
+        "eslint-config-google": "^0.9.1",
+        "nodemon": "^1.18.2"
+    },
+    "license": "MIT"
 }

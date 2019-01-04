@@ -1,8 +1,8 @@
 .page {
-  grid-area: page;
+    grid-area: page;
 
-  display: grid;
-  grid-template-columns: minmax(auto, 980px);
-  grid-template-rows: 4em auto;
-  justify-self: center;
+    display: grid;
+    grid-template-columns: minmax(auto, 980px);
+    grid-template-rows: 4em auto;
+    justify-self: center;
 }

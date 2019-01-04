@@ -1,20 +1,20 @@
 .quest {
-  margin-top: 1.5em;
+    margin-top: 1.5em;
 }
 
 .quest-title {
-  padding: 0.8em;
-  font-weight: 500;
+    padding: 0.8em;
+    font-weight: 500;
 }
 
 .option .title {
-  vertical-align: middle;
+    vertical-align: middle;
 }
 
 .option.valid {
-  background-color: #6EC274;
+    background-color: #6ec274;
 }
 
 .option.invalid {
-  background-color: #FF6A53;
+    background-color: #ff6a53;
 }

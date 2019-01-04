@@ -1,8 +1,8 @@
 .sidebar {
-  grid-area: sidebar;
-  background-color: #FFF;
+    grid-area: sidebar;
+    background-color: #fff;
 }
 
 .link {
-  text-decoration: none;
+    text-decoration: none;
 }

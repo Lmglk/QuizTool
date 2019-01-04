@@ -10,57 +10,63 @@ import routes from './routes';
 mongoose.Promise = Promise;
 
 export class App {
-  constructor() {
-    this.app = new Koa();
+    constructor() {
+        this.app = new Koa();
 
-    this.connectDB();
-    this.app.use(cors());
-    this.app.use(logger());
-    this.app.use(this.errorHandler);
-    this.app.use(bodyParser());
+        this.connectDB();
+        this.app.use(cors());
+        this.app.use(logger());
+        this.app.use(this.errorHandler);
+        this.app.use(bodyParser());
 
-    this.app.use(routes);
-  }
-
-  async connectDB() {
-    try {
-      await mongoose.connect(CONFIG.MONGO_URI, {useNewUrlParser: true});
-      console.log('MongoDB connected');
-    } catch (e) {
-      console.log(e);
-      this.stop();
+        this.app.use(routes);
     }
-  }
 
-  async errorHandler(ctx, next) {
-    try {
-      await next();
-    } catch ({status = 500, message = 'Server Error', name, errors}) {
-      if (name === 'ValidationError') {
-        ctx.status = 400;
-        ctx.body = {
-          errors: Object.values(errors).reduce((acc, currError) => ({
-            ...errors,
-            [errors.path]: currError.message
-          }), {}),
-        };
-      } else {
-        ctx.status = status;
-        ctx.body = { status, message };
-      }
+    async connectDB() {
+        try {
+            await mongoose.connect(
+                CONFIG.MONGO_URI,
+                { useNewUrlParser: true }
+            );
+            console.log('MongoDB connected');
+        } catch (e) {
+            console.log(e);
+            this.stop();
+        }
     }
-  }
 
-  start() {
-    this.server = this.app.listen(CONFIG.PORT, (err) => {
-      if (err) {
-        console.log(err);
-      }
-      console.log(`Server running on port ${CONFIG.PORT}`);
-    });
-  }
+    async errorHandler(ctx, next) {
+        try {
+            await next();
+        } catch ({ status = 500, message = 'Server Error', name, errors }) {
+            if (name === 'ValidationError') {
+                ctx.status = 400;
+                ctx.body = {
+                    errors: Object.values(errors).reduce(
+                        (acc, currError) => ({
+                            ...errors,
+                            [errors.path]: currError.message,
+                        }),
+                        {}
+                    ),
+                };
+            } else {
+                ctx.status = status;
+                ctx.body = { status, message };
+            }
+        }
+    }
 
-  stop() {
-    this.server.close();
-  }
+    start() {
+        this.server = this.app.listen(CONFIG.PORT, err => {
+            if (err) {
+                console.log(err);
+            }
+            console.log(`Server running on port ${CONFIG.PORT}`);
+        });
+    }
+
+    stop() {
+        this.server.close();
+    }
 }
