@@ -6,15 +6,3 @@
     padding: 0.8em;
     font-weight: 500;
 }
-
-.option .title {
-    vertical-align: middle;
-}
-
-.option.valid {
-    background-color: #6ec274;
-}
-
-.option.invalid {
-    background-color: #ff6a53;
-}

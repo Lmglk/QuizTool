@@ -1,0 +1,11 @@
+.option .title {
+    vertical-align: middle;
+}
+
+.option.valid {
+    background-color: #6ec274;
+}
+
+.option.invalid {
+    background-color: #ff6a53;
+}
