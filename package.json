@@ -1,20 +1,26 @@
 {
-  "name": "quiztool",
-  "version": "1.0.0",
-  "description": "",
-  "scripts": {
-    "start": "npm run start:backend | npm run start:frontend",
-    "start:backend": "cd backend && npm start",
-    "start:frontend": "cd frontend && npm start"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Lmglk/QuizTool.git"
-  },
-  "author": "Leonid Veretennikov",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Lmglk/QuizTool/issues"
-  },
-  "homepage": "https://github.com/Lmglk/QuizTool#readme"
+    "name": "quiztool",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "start": "npm run start:backend | npm run start:frontend",
+        "start:backend": "cd backend && npm start",
+        "start:frontend": "cd frontend && npm start",
+        "precommit": "pretty-quick --staged"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Lmglk/QuizTool.git"
+    },
+    "author": "Leonid Veretennikov",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Lmglk/QuizTool/issues"
+    },
+    "homepage": "https://github.com/Lmglk/QuizTool#readme",
+    "devDependencies": {
+        "prettier": "^1.15.3",
+        "husky": "^1.3.1",
+        "pretty-quick": "^1.8.0"
+    }
 }
